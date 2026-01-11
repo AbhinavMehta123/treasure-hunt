@@ -1,6 +1,7 @@
 import Link from "next/link"
 
 const hero = () => {
+  const id = 1; 
   return (
     <main className="relative w-full h-screen
     overflow-hidden flex justify-center mb-[10%]">
@@ -21,7 +22,7 @@ const hero = () => {
           font-bold">Explore, Capture, Conquer</h1>
           <div className="md:w-[75%] w-[60%] h-[0.1px]
           bg-[#baba]"></div>
-          <Link href='/page'>
+        <Link key={id} href={`/questions/${id}`}>
           <button className="h-10 px-16 bg-gradient-to-r from-purple-500 to-indigo-600
           rounded-lg font-medium text-nowrap hover:opacity-70 transition-all duration-300">
            PLAY NOW

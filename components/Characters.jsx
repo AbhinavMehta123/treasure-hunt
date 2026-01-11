@@ -8,7 +8,14 @@ function CustomCursor({ isHovering3D }) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const cursorRef = useRef(null);
 
+  // Determine mobile status (safe check)
+  const [isMobile, setIsMobile] = useState(false);
+
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsMobile(window.matchMedia("(max-width: 768px)").matches);
+    }
+
     const handleMouseMove = (e) => {
       setPosition({ x: e.clientX, y: e.clientY });
     };
@@ -17,6 +24,9 @@ function CustomCursor({ isHovering3D }) {
       document.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
+
+  // ✅ Now conditionally render null *after* hooks have run
+  if (isMobile) return null;
 
   return (
     <motion.div
@@ -53,6 +63,7 @@ function CustomCursor({ isHovering3D }) {
     </motion.div>
   );
 }
+
 
 //  Main Characters Component
 const Characters = () => {
